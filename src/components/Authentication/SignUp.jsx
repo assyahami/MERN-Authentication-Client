@@ -34,7 +34,7 @@ export const SignUp = () => {
     showConfirmPassword: false,
   });
   const [verified, setVerified] = useState(true);
-  const [emailErr, setEmailErr] = useState(second);
+  const [emailErr, setEmailErr] = useState('');
 
   const handleShowPassword = (textFieldName) => {
     if (textFieldName === "password") {
