@@ -1,3 +1,3 @@
-const baseUrl = "https://mern-authentication-api.onrender.com/"
+const baseUrl = "https://mern-authentication-api.onrender.com"
 
 export default baseUrl
