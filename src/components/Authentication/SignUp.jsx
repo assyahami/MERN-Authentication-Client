@@ -5,11 +5,7 @@ import { AuthenticationContainer } from "../layout/AutheticationContainer";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch } from "react-redux";
-import {
-  closeNotification,
-  loadingOn,
-  openNotification,
-} from "../../redux/Slice";
+import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
@@ -34,8 +30,8 @@ export const SignUp = () => {
     showConfirmPassword: false,
   });
   const [verified, setVerified] = useState(true);
-  const [emailErr, setEmailErr] = useState('');
 
+    
   const handleShowPassword = (textFieldName) => {
     if (textFieldName === "password") {
       setShowPWD((prev) => ({ ...prev, showPassword: !prev.showPassword }));
@@ -53,18 +49,10 @@ export const SignUp = () => {
 
   const handleOnSubmit = async (data) => {
     let { password, confirmPassword } = data;
-
-    dispatch(loadingOn());
-    const createdUser = await axios.get(`${baseUrl}/api/v1/user/${data.email}`);
-    let emailAvailabel = createdUser.data?.success;
-    if (emailAvailabel) {
-      setEmailErr("Email alreaady exits");
-    }
     if (password !== confirmPassword) {
       setConfirmPasswordErr("Password must be same");
     } else {
       try {
-        setEmailErr("");
         setConfirmPasswordErr("");
         dispatch(loadingOn());
         const createdUser = await axios.post(
