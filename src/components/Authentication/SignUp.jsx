@@ -31,7 +31,7 @@ export const SignUp = () => {
   });
   const [verified, setVerified] = useState(true);
 
-    
+
   const handleShowPassword = (textFieldName) => {
     if (textFieldName === "password") {
       setShowPWD((prev) => ({ ...prev, showPassword: !prev.showPassword }));
@@ -190,7 +190,7 @@ export const SignUp = () => {
             />
 
             <div className="sub-btn mt-2">
-              <Button variant="light" type="submit">
+              <Button variant="light" type="submit" disabled={verified}>
                 Submit <CaretRightFill className="mb-1" />
               </Button>
             </div>
