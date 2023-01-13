@@ -7,7 +7,11 @@ import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
+import {
+  closeNotification,
+  loadingOn,
+  openNotification,
+} from "../../redux/Slice";
 import baseUrl from "../../utils/baseUrl";
 import { storeCookie } from "../../utils/Cookie";
 import Cookies from "js-cookie";
@@ -28,10 +32,11 @@ export const SignIn = () => {
 
   const handleOnSubmit = async (data) => {
     try {
-      dispatch(loadingOn())
+      dispatch(loadingOn());
       const login = await axios.post(`${baseUrl}/api/v1/user/login`, data);
       storeCookie(login.data);
       navigate("/");
+      dispatch(closeNotification());
     } catch (error) {
       dispatch(openNotification({ message: error.response.data.message }));
       setTimeout(() => {
