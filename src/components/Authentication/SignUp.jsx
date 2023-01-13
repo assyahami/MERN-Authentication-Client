@@ -5,7 +5,7 @@ import { AuthenticationContainer } from "../layout/AutheticationContainer";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useDispatch } from "react-redux";
-import { closeNotification, openNotification } from "../../redux/Slice";
+import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
@@ -69,6 +69,7 @@ export const SignUp = () => {
         }, 3000);
         navigate("/");
       } catch (error) {
+        console.log(error);
         dispatch(openNotification({ message: error.response?.data?.message }));
         setTimeout(() => {
           dispatch(closeNotification());
@@ -188,7 +189,7 @@ export const SignUp = () => {
             />
 
             <div className="sub-btn mt-2">
-              <Button variant="light" type="submit" >
+              <Button variant="light" type="submit">
                 Submit <CaretRightFill className="mb-1" />
               </Button>
             </div>

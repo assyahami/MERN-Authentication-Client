@@ -1,3 +1,3 @@
-const baseUrl = "https://mern-authentication-client.vercel.app"
+const baseUrl = "https://mern-authentication-api.onrender.com"
 
 export default baseUrl
