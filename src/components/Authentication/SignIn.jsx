@@ -94,10 +94,10 @@ export const SignIn = () => {
                 >
                   {showPWD ? <EyeSlashFill /> : <EyeFill />}
                 </InputGroup.Text>
+              </InputGroup>
                 <Form.Text className="err-msg">
                   {errors?.password?.message}
                 </Form.Text>
-              </InputGroup>
             </Form.Group>
 
             <ReCAPTCHA
