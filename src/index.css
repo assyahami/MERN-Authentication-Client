@@ -1,0 +1,165 @@
+.signup-container,
+.main-container,
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.notification{
+    position: absolute;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: rgb(0 0 0 / 12%) 0px 12px 16px;
+}
+.notification-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.home-container  .card-body{
+  background-color: #e7e7e7;
+  height: 22rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main-container {
+    width: fit-content;
+    background-color: #dee2e6;
+    box-shadow: rgb(0 0 0 / 12%) 0px 12px 16px;
+}
+.img-container {
+  align-self: start;
+  position: relative;
+}
+.notfound-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notfound-page > img {
+  width: 800px;
+  margin-top: 1rem;
+}
+.img-container > img {
+  height: 520px;
+  width: 350px;
+}
+.form-container,
+.form-container-signin {
+  width: 25rem;
+  align-self: flex-start;
+  margin-top: 1rem;
+  padding: 0 2rem;
+}
+.form-container-signin {
+  align-self: center !important;
+}
+.sub-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.reset-sub-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+.user-options {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  color: #e7e7e7;
+  background: rgba(0, 0, 0, 0.5);
+  height: 40%;
+  width: 100%;
+}
+.route-signin,
+.companies-medias {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding: 1rem;
+}
+.route-signin > a {
+  color: #e7e7e7;
+  text-decoration: none;
+}
+.route-signin > a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.err-msg {
+  color: #ff4444;
+}
+.pwd-options {
+  cursor: pointer;
+}
+.pwd-options:hover {
+  background-color: #ffff;
+}
+.social-media {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+  width: 50%;
+}
+.form-label,
+.form-control {
+  font-size: 14px !important;
+}
+@media screen and (max-width:900px) {
+    .signup-container{
+        height: 100vh;
+    }
+}
+
+@media screen and (max-width:486px) {
+    .main-container{
+        flex-direction: column-reverse;
+        justify-content: space-around;
+        padding: 1rem;
+    }
+    .form-container-signin{
+        width: 20rem;
+    }
+    .signup-container{
+        background: #dee2e6;
+        margin-top: 0;
+        height: fit-content;
+    }
+    .img-container{
+        background: #dee2e6;
+    }
+    .sub-btn{
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .main-container{
+        height: fit-content;
+    }
+    .route-signin >a{
+        color: #333;
+    }
+    .user-options{
+        color: #333;
+        background-color: transparent;
+        position: relative;
+    }
+    .img-container{
+        width: 100%;
+    }
+    .img-container > img{
+        display: none;
+    }
+}
