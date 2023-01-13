@@ -69,7 +69,7 @@ export const SignUp = () => {
         }, 3000);
         navigate("/");
       } catch (error) {
-        dispatch(openNotification({ message: error.response.data.message }));
+        dispatch(openNotification({ message: error.response?.data?.message }));
         setTimeout(() => {
           dispatch(closeNotification());
         }, 3000);
@@ -188,7 +188,7 @@ export const SignUp = () => {
             />
 
             <div className="sub-btn mt-2">
-              <Button variant="light" type="submit" disabled={verified}>
+              <Button variant="light" type="submit" >
                 Submit <CaretRightFill className="mb-1" />
               </Button>
             </div>
