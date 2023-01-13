@@ -53,6 +53,7 @@ export const SignUp = () => {
     } else {
       try {
         setConfirmPasswordErr("");
+        dispatch(loadingOn());
         const createdUser = await axios.post(
           `${baseUrl}/api/v1/user/register`,
           data
@@ -62,16 +63,16 @@ export const SignUp = () => {
           openNotification({
             message: "Sucessfully created a your account " + data.username,
           })
-          );
-          setTimeout(() => {
-            dispatch(closeNotification());
-          }, 3000);
-          navigate("/");
+        );
+        setTimeout(() => {
+          dispatch(closeNotification());
+        }, 3000);
+        navigate("/");
       } catch (error) {
-          dispatch(openNotification({ message: error.response.data.message }));
-          setTimeout(() => {
-            dispatch(closeNotification());
-          }, 3000);
+        dispatch(openNotification({ message: error.response.data.message }));
+        setTimeout(() => {
+          dispatch(closeNotification());
+        }, 3000);
       }
     }
   };

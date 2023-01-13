@@ -18,6 +18,12 @@ const notificationSlice = createSlice({
                 showNotify: false,
                 message: '',
             }
+        },
+        loadingOn(state, action) {
+            return {
+                showNotify: true,
+                message: 'loading....',
+            }
         }
     }
 })
@@ -25,11 +31,12 @@ const notificationSlice = createSlice({
 
 const { actions, reducer } = notificationSlice
 
-const { openNotification, closeNotification} = actions
+const { openNotification, closeNotification, loadingOn } = actions
 
 export {
     openNotification,
     closeNotification,
+    loadingOn
 }
 
 export default reducer

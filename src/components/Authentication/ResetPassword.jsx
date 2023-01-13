@@ -4,7 +4,7 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { CaretRightFill, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
-import { closeNotification, openNotification } from "../../redux/Slice";
+import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
@@ -44,7 +44,8 @@ const ResetPassword = () => {
     if (password !== newConfirmPassword) {
       setConfirmPasswordErr("Password must be same");
     } else {
-      try {
+        try {
+      dispatch(loadingOn());
         const changeUserPassword = await axios.post(
           `${baseUrl}/api/v1/user/password/reset/${token}`,
           data

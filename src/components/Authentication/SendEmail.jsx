@@ -4,7 +4,11 @@ import { AuthenticationContainer } from "../layout/AutheticationContainer";
 import { CaretRightFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { closeNotification, openNotification } from "../../redux/Slice";
+import {
+  closeNotification,
+  loadingOn,
+  openNotification,
+} from "../../redux/Slice";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
 import Cookies from "js-cookie";
@@ -20,6 +24,7 @@ const SendEmail = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(loadingOn());
       const { data } = await axios.post(
         `${baseUrl}/api/v1/user/password/forgot`,
         { email: email }
