@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../layout/Header";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import cookie from "js-cookie";
 import axios from "axios";
@@ -32,7 +32,11 @@ export const Home = () => {
         <div className="home-container">
           <Card style={{ width: "25rem" }} className="mt-4">
             <Card.Body>
-              <Card.Title>Hello {user?.username}!</Card.Title>
+              {user.username ? (
+                <Card.Title>Hello {user.username}!</Card.Title>
+              ) : (
+                <Spinner animation="border" className="m-4" size="md" />
+              )}
               <Card.Text>
                 Don't worry,we are secured your a details. To show our happiness
                 at having you here,

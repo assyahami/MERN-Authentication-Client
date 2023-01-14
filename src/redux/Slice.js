@@ -5,6 +5,7 @@ const notificationSlice = createSlice({
     name: "notification",
     initialState: {
         showNotify: false,
+        message: "",
     },
     reducers: {
         openNotification(state, action) {
@@ -22,7 +23,7 @@ const notificationSlice = createSlice({
         loadingOn(state, action) {
             return {
                 showNotify: true,
-                message: 'loading....',
+                message: 'loading...',
             }
         }
     }
