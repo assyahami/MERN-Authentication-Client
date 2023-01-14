@@ -4,8 +4,12 @@ import { Form, Button, InputGroup } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { CaretRightFill, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
-import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
-import { useDispatch } from "react-redux";
+import {
+  closeNotification,
+  loadingOn,
+  openNotification,
+} from "../../redux/Slice";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
 import { storeCookie } from "../../utils/Cookie";
@@ -17,6 +21,7 @@ const ResetPassword = () => {
     watch,
     formState: { errors },
   } = useForm();
+  const globalState = useSelector((state) => state.usersState);
   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
   const { token } = useParams();
   const [showPWD, setShowPWD] = useState({
@@ -44,8 +49,8 @@ const ResetPassword = () => {
     if (password !== newConfirmPassword) {
       setConfirmPasswordErr("Password must be same");
     } else {
-        try {
-      dispatch(loadingOn());
+      try {
+        dispatch(loadingOn());
         const changeUserPassword = await axios.post(
           `${baseUrl}/api/v1/user/password/reset/${token}`,
           data
@@ -54,6 +59,7 @@ const ResetPassword = () => {
         dispatch(
           openNotification({
             message: "Your password has been changed successfully",
+            sended: true,
           })
         );
         setTimeout(() => {
@@ -127,7 +133,11 @@ const ResetPassword = () => {
               </Form.Text>
             </Form.Group>
             <div className="reset-sub-btn">
-              <Button variant="light" type="submit">
+              <Button
+                variant="light"
+                type="submit"
+                disabled={globalState.sended}
+              >
                 Submit
               </Button>
             </div>

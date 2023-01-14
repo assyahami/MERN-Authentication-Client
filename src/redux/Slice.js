@@ -6,12 +6,14 @@ const notificationSlice = createSlice({
     initialState: {
         showNotify: false,
         message: "",
+        sended: false,
     },
     reducers: {
         openNotification(state, action) {
             return {
                 showNotify: true,
                 message: action.payload.message,
+                sended: action.payload.sended
             }
         },
         closeNotification(state, action) {

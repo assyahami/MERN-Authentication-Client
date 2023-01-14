@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { AuthenticationContainer } from "../layout/AutheticationContainer";
 import { CaretRightFill } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   closeNotification,
   loadingOn,
@@ -17,6 +17,7 @@ const SendEmail = () => {
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState("");
 
+  const globalState = useSelector((state) => state.usersState);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let getToken = Cookies.get("token");
@@ -32,6 +33,7 @@ const SendEmail = () => {
       dispatch(
         openNotification({
           message: data.message,
+          sended: data.success && true,
         })
       );
       setTimeout(() => {
@@ -68,7 +70,11 @@ const SendEmail = () => {
             </Form.Group>
 
             <div className="reset-sub-btn">
-              <Button variant="light" disabled={email.length < 1} type="submit">
+              <Button
+                variant="light"
+                disabled={email.length < 1 || globalState.sended}
+                type="submit"
+              >
                 Send login link
               </Button>
             </div>

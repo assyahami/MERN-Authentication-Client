@@ -5,7 +5,7 @@ import { CaretRightFill, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
   closeNotification,
@@ -25,6 +25,7 @@ export const SignIn = () => {
   } = useForm();
   const [showPWD, setShowPWD] = useState(false);
   const [verified, setVerified] = useState(true);
+  const globalState = useSelector((state) => state.usersState);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,8 +36,8 @@ export const SignIn = () => {
       dispatch(loadingOn());
       const login = await axios.post(`${baseUrl}/api/v1/user/login`, data);
       storeCookie(login.data);
-      navigate("/");
       dispatch(closeNotification());
+      navigate("/");
     } catch (error) {
       dispatch(openNotification({ message: error.response.data.message }));
       setTimeout(() => {
@@ -95,9 +96,9 @@ export const SignIn = () => {
                   {showPWD ? <EyeSlashFill /> : <EyeFill />}
                 </InputGroup.Text>
               </InputGroup>
-                <Form.Text className="err-msg">
-                  {errors?.password?.message}
-                </Form.Text>
+              <Form.Text className="err-msg">
+                {errors?.password?.message}
+              </Form.Text>
             </Form.Group>
 
             <ReCAPTCHA
@@ -109,7 +110,11 @@ export const SignIn = () => {
               <Link to={"/accounts/password/reset"}>Forgot password?</Link>
             </div>
             <div className="sub-btn mt-2">
-              <Button variant="light" type="submit" disabled={verified}>
+              <Button
+                variant="light"
+                type="submit"
+                disabled={verified || globalState.showNotify}
+              >
                 Submit <CaretRightFill className="mb-1" />
               </Button>
             </div>

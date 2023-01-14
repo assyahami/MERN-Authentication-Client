@@ -4,8 +4,12 @@ import { CaretRightFill, EyeFill, EyeSlashFill } from "react-bootstrap-icons";
 import { AuthenticationContainer } from "../layout/AutheticationContainer";
 import { useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useDispatch } from "react-redux";
-import { closeNotification, loadingOn, openNotification } from "../../redux/Slice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  closeNotification,
+  loadingOn,
+  openNotification,
+} from "../../redux/Slice";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
@@ -19,7 +23,7 @@ export const SignUp = () => {
     watch,
     formState: { errors },
   } = useForm();
-
+  const globalState = useSelector((state) => state.usersState);
   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +34,6 @@ export const SignUp = () => {
     showConfirmPassword: false,
   });
   const [verified, setVerified] = useState(true);
-
 
   const handleShowPassword = (textFieldName) => {
     if (textFieldName === "password") {
@@ -190,7 +193,11 @@ export const SignUp = () => {
             />
 
             <div className="sub-btn mt-2">
-              <Button variant="light" type="submit" disabled={verified}>
+              <Button
+                variant="light"
+                type="submit"
+                disabled={verified || globalState.showNotify}
+              >
                 Submit <CaretRightFill className="mb-1" />
               </Button>
             </div>
