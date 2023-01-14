@@ -29,7 +29,7 @@ function Header({ user }) {
             <Dropdown.Toggle variant="">
               <PersonCircle className="mt-auto mb-auto me-2" />
               {user.username ? (
-                <span>{user.username}!</span>
+                <span>{user.username}</span>
               ) : (
                 <Spinner animation="grow" size="sm" />
               )}
